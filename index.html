@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RVS Theater</title>
+    
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;800&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Supabase client -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="brand">RVS <span>Theater</span></div>
+    </header>
+
+    <!-- Main Content Display -->
+    <main>
+        <!-- HOME SECTION -->
+        <div id="home" class="section active">
+
+            <h2 style="display:none;">Welcome to RVS</h2>
+            <p style="display:none;">Experience the ultimate cinema right from your screen. Relax, grab some popcorn, and enjoy the show.</p>
+
+
+            <!-- HERO BANNER -->
+            <div id="hero-banner" class="hero-banner" aria-live="polite">
+                <div class="hero-poster-wrap">
+
+
+
+                    <img id="hero-poster" class="hero-poster" src="https://via.placeholder.com/900x500/0b0b0b/e50914?text=Trending" alt="Trending movie poster">
+                </div>
+
+                <div class="hero-content">
+                    <div id="hero-title" class="hero-title">Trending Now</div>
+                    <div id="hero-desc" class="hero-desc">Loading top picks...</div>
+
+                    <button id="hero-watch-btn" class="hero-watch-btn" type="button">
+                        <i class="fas fa-play" aria-hidden="true"></i>
+                        <span>WATCH NOW</span>
+                    </button>
+
+                </div>
+            </div>
+
+        </div>
+
+        <!-- NOTICE BOARD SECTION -->
+
+
+        <div id="notice" class="section">
+            <i class="fas fa-bullhorn icon-large"></i>
+            <h2>Notice Board</h2>
+
+
+            <!-- Notice Cards Render Target -->
+            <div id="notice-movies" class="movies-grid" aria-live="polite"></div>
+        </div>
+
+
+        <!-- MOVIES SECTION -->
+        <div id="movies" class="section">
+
+            <i class="fas fa-ticket-alt icon-large"></i>
+            <h2>Now Playing</h2>
+            <p>Browse trending titles on the Notice Board.</p>
+
+            <div class="movies-search" aria-label="Search movies">
+                <input id="movies-search-input" type="search" placeholder="Search movies..." autocomplete="off" spellcheck="false" />
+                <button id="movies-clear-btn" type="button" aria-label="Clear search"><i class="fas fa-times"></i></button>
+            </div>
+
+            <div id="movies-cards" class="movies-grid" aria-live="polite"></div>
+        </div>
+
+    </main>
+
+    <!-- Navigation Buttons -->
+    <nav class="nav-container">
+
+        <div class="bottom-links" aria-label="Footer links">
+        </div>
+
+
+
+
+        <button class="nav-btn active" onclick="showSection('home', this)">
+
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </button>
+        
+        <button class="nav-btn" onclick="showSection('notice', this)">
+            <i class="fas fa-bullhorn"></i>
+            <span>Notice</span>
+        </button>
+        
+        <button class="nav-btn" onclick="showSection('movies', this)">
+
+            <i class="fas fa-ticket-alt"></i>
+            <span>Movies</span>
+        </button>
+
+    
+    </nav>
+
+    <!-- Custom JS -->
+    <script src="script.js"></script>
+
+</body>
+</html>
+

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Movies - RVS Theater</title>
+
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .admin-page{
+            width: 90%;
+            max-width: 1100px;
+            margin: 120px auto 60px;
+            padding: 24px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 16px;
+            box-shadow: 0 18px 40px rgba(0,0,0,0.45);
+        }
+        .top-row{
+            display:flex;
+            gap:14px;
+            align-items:center;
+            justify-content:space-between;
+            flex-wrap:wrap;
+            margin-bottom:14px;
+        }
+        .admin-title{
+            display:flex;
+            gap:14px;
+            align-items:center;
+        }
+        .admin-title i{font-size:2.2rem;color:var(--primary)}
+        .admin-title h1{font-size:2rem;line-height:1.2;margin:0;}
+
+        .back-link{
+            display:inline-flex;
+            gap:10px;
+            align-items:center;
+            padding:10px 14px;
+            border-radius:12px;
+            background: rgba(229, 9, 20, 0.1);
+            border: 1px solid rgba(229, 9, 20, 0.35);
+            color: var(--primary);
+            text-decoration:none;
+            font-weight:700;
+        }
+        .back-link i{color:var(--primary)}
+
+        .search-row{
+            width:100%;
+            display:flex;
+            gap:10px;
+            align-items:center;
+            margin: 12px 0 18px;
+        }
+        .search-row input{
+            flex:1;
+            padding: 12px 14px;
+            border-radius: 14px;
+            border: 1px solid rgba(255,255,255,0.12);
+            background: rgba(255,255,255,0.04);
+            color: var(--light);
+            outline: none;
+            font-size: 0.95rem;
+        }
+
+        .btn-danger{
+            background: rgba(229, 9, 20, 0.18);
+            border: 1px solid rgba(229, 9, 20, 0.55);
+            color: var(--primary);
+            border-radius: 14px;
+            padding: 12px 14px;
+            font-weight: 900;
+            cursor: pointer;
+            transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+        }
+        .btn-danger:hover{
+            background: rgba(229, 9, 20, 0.24);
+            box-shadow: 0 18px 40px rgba(0,0,0,0.35);
+            transform: translateY(-1px);
+        }
+        .btn-danger:active{transform: scale(0.98)}
+
+        .movie-admin-card{
+            width:100%;
+            max-width:240px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 14px;
+            overflow:hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.35);
+        }
+        .movie-admin-card .movie-admin-img{
+            width:100%;
+            height:140px;
+            object-fit:cover;
+            background: rgba(0,0,0,0.25);
+            display:block;
+        }
+        .movie-admin-body{
+            padding: 12px 12px 14px;
+            text-align:left;
+        }
+        .movie-admin-title{
+            font-weight:800;
+            font-size:1rem;
+            margin-bottom:6px;
+            color:#fff;
+        }
+        .movie-admin-desc{
+            font-size:0.85rem;
+            color:#aaa;
+            line-height:1.35;
+            margin-bottom:10px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .movie-admin-actions{
+            display:flex;
+            gap:10px;
+            align-items:center;
+            justify-content:space-between;
+        }
+        .movie-admin-delete{
+            width: 100%;
+            margin-top: 10px;
+            display:flex;
+            justify-content:center;
+        }
+
+        .movies-grid{
+            margin-top: 8px;
+        }
+        .status{
+            margin-top: 8px;
+            color:#aaa;
+            font-weight:700;
+            font-size:0.95rem;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div class="brand">RVS <span>Theater</span></div>
+</header>
+
+<main class="admin-page">
+    <div class="top-row">
+        <div class="admin-title">
+            <i class="fas fa-film" aria-hidden="true"></i>
+            <h1>All Movies</h1>
+        </div>
+
+        <a class="back-link" href="admin.html">
+            <i class="fas fa-arrow-left" aria-hidden="true"></i>
+            Back to Admin
+        </a>
+    </div>
+
+    <div class="search-row" role="search" aria-label="Search movies">
+        <input id="moviesSearch" type="search" placeholder="Search by movie name or description..." autocomplete="off" spellcheck="false" />
+    </div>
+
+    <div id="moviesGrid" class="movies-grid" aria-live="polite"></div>
+
+    <div id="pageStatus" class="status">Status: loading...</div>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="all-movies.js"></script>
+</body>
+</html>
+

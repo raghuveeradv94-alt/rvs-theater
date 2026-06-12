@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banner Upload - RVS Theater</title>
+
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .form-page{
+            width: 90%;
+            max-width: 900px;
+            margin: 120px auto 60px;
+            padding: 24px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 16px;
+            box-shadow: 0 18px 40px rgba(0,0,0,0.45);
+        }
+        .form-header{
+            display:flex;
+            gap:14px;
+            align-items:center;
+            margin-bottom:16px;
+        }
+        .form-header i{font-size:2.2rem;color:var(--primary)}
+        .form-page h1{font-size:2rem;line-height:1.2;margin:0;}
+        .form-page p{color:#aaa;font-size:1rem;line-height:1.6;margin:10px 0 18px;}
+
+        .back-link{
+            display:inline-flex;
+            gap:10px;
+            align-items:center;
+            padding:10px 14px;
+            border-radius:12px;
+            background: rgba(229, 9, 20, 0.1);
+            border: 1px solid rgba(229, 9, 20, 0.35);
+            color: var(--primary);
+            text-decoration:none;
+            font-weight:700;
+        }
+        .back-link i{color:var(--primary)}
+
+        form{
+            display:grid;
+            grid-template-columns: 1fr 1fr;
+            gap:16px;
+        }
+        @media (max-width: 720px){
+            form{grid-template-columns: 1fr;}
+        }
+
+        .field{
+            background: rgba(0,0,0,0.12);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 14px;
+            padding: 12px;
+        }
+
+        .field label{
+            display:block;
+            font-weight:800;
+            font-size:0.9rem;
+            margin-bottom:8px;
+            color:#fff;
+        }
+
+        .field input,.field textarea{
+            width:100%;
+            padding:12px;
+            border-radius:12px;
+            border:1px solid rgba(255,255,255,0.12);
+            background: rgba(255,255,255,0.04);
+            color: var(--light);
+            outline:none;
+            font-size:0.95rem;
+        }
+        .field textarea{min-height:110px;resize:vertical;}
+
+        .full{grid-column: 1 / -1;}
+
+        .actions{
+            grid-column: 1 / -1;
+            display:flex;
+            flex-wrap:wrap;
+            gap:12px;
+            align-items:center;
+            justify-content:space-between;
+            margin-top:4px;
+        }
+
+        .btn-primary{
+            background: rgba(229, 9, 20, 0.18);
+            border: 1px solid rgba(229, 9, 20, 0.55);
+            color: var(--primary);
+            border-radius: 14px;
+            padding: 14px 16px;
+            font-weight: 900;
+            cursor: pointer;
+            transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+        }
+        .btn-primary:hover{
+            background: rgba(229, 9, 20, 0.24);
+            box-shadow: 0 18px 40px rgba(0,0,0,0.35);
+            transform: translateY(-1px);
+        }
+        .btn-primary:disabled{
+            opacity:0.6;
+            cursor:not-allowed;
+            transform:none;
+        }
+
+        .status{
+            color:#aaa;
+            font-weight:700;
+            font-size:0.95rem;
+        }
+
+        .preview-area{
+            margin-top: 18px;
+            display:grid;
+            grid-template-columns: 260px 1fr;
+            gap:16px;
+            align-items:start;
+        }
+        @media (max-width: 720px){
+            .preview-area{grid-template-columns: 1fr;}
+        }
+
+        .preview-poster{
+            width: 100%;
+            max-width: 260px;
+            border-radius: 16px;
+            overflow:hidden;
+            border:1px solid rgba(255,255,255,0.08);
+            background: rgba(0,0,0,0.2);
+        }
+        .preview-poster img{width:100%;height:180px;object-fit:cover;display:block;}
+
+        .preview-card{
+            border-radius: 16px;
+            padding: 14px;
+            border:1px solid rgba(255,255,255,0.08);
+            background: rgba(255,255,255,0.03);
+        }
+        .preview-title{font-size:1.2rem;font-weight:900;margin-bottom:6px;}
+        .preview-desc{color:#aaa;line-height:1.45;margin-bottom:10px;}
+        .upload-hint{color:#aaa;font-size:0.9rem;margin-top:6px;}
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="brand">RVS <span>Theater</span></div>
+    </header>
+
+    <main class="form-page">
+        <div class="form-header">
+            <i class="fas fa-image" aria-hidden="true"></i>
+        </div>
+
+        <h1>Upload Banner</h1>
+        <p>Upload the banner poster + details, preview it, then publish.</p>
+
+        <a class="back-link" href="admin.html">
+            <i class="fas fa-arrow-left" aria-hidden="true"></i>
+            Back to Admin
+        </a>
+
+        <div class="preview-area" aria-live="polite">
+            <div class="preview-poster">
+                <img id="previewPoster" src="https://via.placeholder.com/600x900/0b0b0b/e50914?text=Banner" alt="Banner preview">
+            </div>
+            <div class="preview-card">
+                <div class="preview-title" id="previewTitle">Movie name</div>
+                <div class="preview-desc" id="previewDesc">Description will appear here.</div>
+            </div>
+        </div>
+
+        <form id="bannerForm" style="margin-top:18px;">
+            <div class="field">
+                <label for="movieName">Movie Name</label>
+                <input id="movieName" name="movieName" type="text" placeholder="e.g. Shadow Striker" required>
+            </div>
+
+            <div class="field">
+                <label for="watchLink">Watch Link</label>
+                <input id="watchLink" name="watchLink" type="url" placeholder="https://... or watch.html?movie=..." required>
+                <div class="upload-hint">Used by the hero “WATCH NOW” button.</div>
+            </div>
+
+            <div class="field full">
+                <label for="description">Description</label>
+                <textarea id="description" name="description" placeholder="Write a short description..." required></textarea>
+            </div>
+
+            <div class="field full">
+                <label for="posterInput">Upload Movie Poster</label>
+                <input id="posterInput" name="posterInput" type="file" accept="image/*" required>
+                <div class="upload-hint">JPG/PNG recommended.</div>
+            </div>
+
+            <div class="actions">
+                <div class="status" id="formStatus">Status: waiting</div>
+                <button class="btn-primary" id="publishBtn" type="submit">Publish Banner</button>
+            </div>
+        </form>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="herobanner-upload.js"></script>
+
+</body>
+</html>
+

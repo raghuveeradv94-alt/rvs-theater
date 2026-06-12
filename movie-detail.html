@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Movie Detail - RVS Theater</title>
+
+  <!-- FontAwesome for Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css" />
+
+  <style>
+    .detail-page{
+      width: 90%;
+      max-width: 1100px;
+      margin: 120px auto 60px;
+      padding: 24px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
+      box-shadow: 0 18px 40px rgba(0,0,0,0.45);
+    }
+
+    .detail-top{
+      display:flex;
+      gap:16px;
+      align-items:flex-start;
+      flex-wrap:wrap;
+    }
+
+    .detail-poster{
+      width: 260px;
+      max-width: 100%;
+      border-radius: 16px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,0.08);
+      background: rgba(0,0,0,0.2);
+      flex: 0 0 auto;
+    }
+
+    .detail-poster img{
+      width:100%;
+      height: 380px;
+      max-height: 50vh;
+      object-fit: cover;
+      display:block;
+    }
+
+    .detail-meta{
+      flex: 1;
+      min-width: 240px;
+    }
+
+    .detail-title{
+      color:#fff;
+      font-size: 2rem;
+      font-weight: 900;
+      line-height: 1.1;
+      margin: 2px 0 10px;
+    }
+
+    .detail-desc{
+      color:#aaa;
+      line-height:1.6;
+      font-size:1rem;
+      margin-bottom: 16px;
+      max-width: 680px;
+    }
+
+    .btn-primary{
+      background: rgba(229, 9, 20, 0.18);
+      border: 1px solid rgba(229, 9, 20, 0.55);
+      color: var(--primary);
+      border-radius: 14px;
+      padding: 14px 16px;
+      font-weight: 900;
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+      text-decoration:none;
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      justify-content:center;
+      width:100%;
+      max-width:420px;
+    }
+
+    .btn-primary:hover{
+      background: rgba(229, 9, 20, 0.24);
+      box-shadow: 0 18px 40px rgba(0,0,0,0.35);
+      transform: translateY(-1px);
+    }
+
+    .btn-primary:active{ transform: scale(0.98); }
+
+    .back-link{
+      display:inline-flex;
+      gap:10px;
+      align-items:center;
+      padding:10px 14px;
+      border-radius: 12px;
+      background: rgba(229, 9, 20, 0.1);
+      border: 1px solid rgba(229, 9, 20, 0.35);
+      color: var(--primary);
+      text-decoration:none;
+      font-weight:700;
+    }
+
+    .back-link i{ color: var(--primary); }
+
+    .detail-grid{
+      margin-top: 18px;
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    .detail-card{
+      border-radius: 16px;
+      padding: 16px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.03);
+    }
+
+    .detail-kv{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+      color:#ddd;
+      font-weight:700;
+    }
+
+    .kv-badge{
+      color:#fff;
+      padding: 8px 10px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(0,0,0,0.25);
+      font-size:0.9rem;
+      font-weight:900;
+    }
+
+    @media (max-width: 520px){
+      .detail-poster img{ height: 280px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="brand">RVS <span>Theater</span></div>
+  </header>
+
+  <main class="detail-page" aria-live="polite">
+    <a class="back-link" href="index.html">
+      <i class="fas fa-arrow-left" aria-hidden="true"></i>
+      Back
+    </a>
+
+    <div style="height:14px;"></div>
+
+    <div class="detail-top">
+      <div class="detail-poster">
+        <img id="detailPoster" src="https://via.placeholder.com/600x900/0b0b0b/e50914?text=Poster" alt="Movie poster" />
+      </div>
+
+      <div class="detail-meta">
+        <div class="detail-title" id="detailTitle">Loading...</div>
+        <div class="detail-desc" id="detailDesc">Please wait.</div>
+      </div>
+    </div>
+
+    <div class="detail-grid">
+      <div class="detail-card">
+        <div class="detail-kv">
+          <span class="kv-badge" id="detailRelease">Release: --</span>
+          <span class="kv-badge" id="detailType">Type: Movie</span>
+        </div>
+      </div>
+
+      <!-- Extra scroll instruction slot (above Ad Slot 1) -->
+      <div class="detail-card">
+        <div style="width:100%;height:140px;border:1px dashed rgba(229, 9, 20, 0.35);border-radius:14px;background:rgba(0,0,0,0.15);display:flex;align-items:center;justify-content:center; text-align:center; padding: 10px;">
+          <div style="color:#fff; font-weight:900; font-size:1.05rem;">
+            Scroll down to open movie
+          </div>
+        </div>
+      </div>
+
+      <!-- Slot containers (4 total) -->
+      <div class="detail-card">
+        <div id="videoAdSlot" style="width:100%;height:220px;border:1px dashed rgba(229, 9, 20, 0.45);border-radius:14px;background:rgba(0,0,0,0.15);display:flex;align-items:center;justify-content:center;"></div>
+      </div>
+
+      <div class="detail-card">
+        <div id="bannerAdSlot" style="width:100%;height:120px;border:1px dashed rgba(229, 9, 20, 0.35);border-radius:14px;background:rgba(0,0,0,0.15);display:flex;align-items:center;justify-content:center;"></div>
+      </div>
+
+      <div class="detail-card">
+        <div id="videoAdSlot2" style="width:100%;height:220px;border:1px dashed rgba(229, 9, 20, 0.45);border-radius:14px;background:rgba(0,0,0,0.15);display:flex;align-items:center;justify-content:center;"></div>
+      </div>
+
+      <div class="detail-card">
+        <div id="bannerAdSlot2" style="width:100%;height:120px;border:1px dashed rgba(229, 9, 20, 0.35);border-radius:14px;background:rgba(0,0,0,0.15);display:flex;align-items:center;justify-content:center;"></div>
+      </div>
+
+
+      <!-- Open button after slot 4 -->
+      <div class="detail-card" style="padding-top:10px;padding-bottom:10px;">
+        <div style="width:100%; display:flex; justify-content:center;">
+          <button id="openBtn" class="btn-primary" type="button" aria-label="Open">
+            <i class="fas fa-play" aria-hidden="true"></i>
+            Open
+          </button>
+        </div>
+      </div>
+
+      <div id="bottomAnchor" style="width:100%; height:1px;"></div>
+    </div>
+  </main>
+
+  <script>
+    // Minimal detail page: reads from localStorage.
+
+    function getQueryParam(name){
+      const url = new URL(window.location.href);
+      return url.searchParams.get(name);
+    }
+
+    function setText(id, value){
+      const el = document.getElementById(id);
+      if (el) el.textContent = value;
+    }
+
+    (function init(){
+      const movieSlug = getQueryParam('movie') || getQueryParam('id');
+
+      // Expected shape: localStorage.setItem('rvsMovieDetail', JSON.stringify({...}))
+      let detail = {};
+      try{
+        detail = JSON.parse(localStorage.getItem('rvsMovieDetail') || '{}');
+      }catch(e){ detail = {}; }
+
+      const name = detail?.name || detail?.title || (movieSlug ? movieSlug.replaceAll('-', ' ').toUpperCase() : 'MOVIE');
+      const desc = detail?.description || detail?.shortDescription || detail?.desc || 'No description available.';
+      const poster = detail?.poster || detail?.moviePoster || 'https://via.placeholder.com/600x900/0b0b0b/e50914?text=Poster';
+      const watchLink = detail?.watchLink || detail?.watch_link || '#';
+      const release = detail?.releaseDate || detail?.release_date || '';
+
+      document.getElementById('detailPoster').src = poster;
+      setText('detailTitle', name);
+      setText('detailDesc', desc);
+      setText('detailType', 'Type: Movie');
+      setText('detailRelease', release ? `Release: ${release}` : 'Release: --');
+
+      const openBtn = document.getElementById('openBtn');
+      if (openBtn) {
+        openBtn.onclick = () => {
+          if (!watchLink || watchLink === '#') return;
+          window.open(watchLink, '_blank', 'noopener');
+        };
+      }
+    })();
+  </script>
+
+</body>
+</html>
+
