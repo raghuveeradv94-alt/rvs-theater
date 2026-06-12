@@ -50,6 +50,50 @@ header {
 }
 
 /* Navigation Bar */
+.bottom-links {
+    position: fixed;
+    left: 16px;
+    bottom: 110px;
+    z-index: 101;
+}
+
+/* place links alongside the left edge of the bottom nav pill */
+.nav-container .bottom-links {
+    left: -500px;
+    bottom: 1px;
+    top: auto;
+}
+
+/* render as a left-side little column near the nav */
+.nav-container .bottom-links .footer-link {
+    display: block;
+    margin: 0;
+    width: max-content;
+}
+
+.footer-links {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.footer-link {
+    color: rgba(245,245,245,0.85);
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-decoration: none;
+    padding: 8px 10px;
+    border-radius: 12px;
+    background: rgba(20, 20, 20, 0.75);
+    border: 1px solid rgba(255,255,255,0.08);
+    backdrop-filter: blur(10px);
+}
+
+.footer-link:hover {
+    color: var(--primary);
+    border-color: rgba(229, 9, 20, 0.35);
+}
+
 .nav-container {
     position: fixed;
     bottom: 20px;
