@@ -1,12 +1,9 @@
-- [x] Implement Movie Card → Movie Detail page click flow (no Telegram direct open)
-- [x] Add movie metadata loading on movie-detail.html from the clicked movie record
-- [x] Move Telegram open to Watch/Download button only
-- [x] Add ad slots (Video Ads, Image/Banner Ads) in Movie Detail layout
-- [x] Update movie card rendering logic (main site) to pass movie identifier to detail page
-- [ ] Ensure backwards compatibility / fallback behavior
-- [ ] Test locally by navigating: Movie card → detail → watch opens Telegram
+# TODO
 
+- [ ] Fix Movies layout: prevent cards being cut off / hidden behind fixed header + bottom nav
+- [ ] Update `style.css`: stop `.section` absolute-height overlap from interfering with scroll layout
+- [ ] Update `style.css`: ensure `.movies-grid` has safe spacing so last row stays visible
+- [x] Update `all-movies.html`: replace fixed margin approach with responsive padding/min-height strategy
 
-
-
+- [ ] Manual verification: desktop/tablet/mobile; confirm full grid visibility and smooth page scroll
 

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Movies - RVS Theater</title>
+
+  <!-- FontAwesome for Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;800&display=swap" rel="stylesheet">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Supabase client -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4698205344328039" crossorigin="anonymous"></script>
+
+  <style>
+    /* Keep design consistent with existing pages */
+    #movies-page-header {
+      width: 100%;
+    }
+
+    .movies-search-bar {
+      width: 100%;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      justify-content: flex-end;
+    }
+
+    /* Make sure the search button doesn't overlap with fixed header */
+    @media (max-width: 720px) {
+      .movies-search-bar {
+        justify-content: flex-start;
+        width: 100%;
+      }
+    }
+
+    /* Use existing grid/card styles from style.css */
+    #movies-cards {
+      margin-top: 6px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header (fixed) -->
+  <header id="movies-page-header">
+    <div class="brand">RVS <span>Theater</span></div>
+
+    <!-- Search UI in header -->
+    <div class="header-movies-search" aria-label="Search movies">
+      <input id="movies-search-input" type="search" placeholder="Search movies..." autocomplete="off" spellcheck="false" />
+      <button id="movies-clear-btn" type="button" aria-label="Clear search">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <h2 style="margin: 0 0 14px; font-size: 700%; text-align:center;">All Movies</h2>
+    <div class="movies-grid" id="movies-cards" aria-live="polite"></div>
+  </main>
+
+
+  <!-- Navigation Buttons (fixed) -->
+  <nav class="nav-container">
+    <div class="bottom-links" aria-label="Footer links">
+      <a class="footer-link" style="margin-right:0;" href="Privacy-Policy.html">Privacy Policy</a>
+      <a class="footer-link" href="about-us.html">About Us</a>
+    </div>
+
+    <button class="nav-btn" onclick="location.href='index.html'">
+      <i class="fas fa-home"></i>
+      <span>Home</span>
+    </button>
+
+    <button class="nav-btn" onclick="location.href='notice-upload.html'">
+      <i class="fas fa-bullhorn"></i>
+      <span>Notice</span>
+    </button>
+
+    <button class="nav-btn active" onclick="location.href='movie.html'">
+      <i class="fas fa-ticket-alt"></i>
+      <span>Movies</span>
+    </button>
+  </nav>
+
+  <!-- Page JS: render all movies (same Supabase logic as admin grid, but without delete/admin controls) -->
+  <script src="all-movies.js"></script>
+</body>
+</html>
+
+

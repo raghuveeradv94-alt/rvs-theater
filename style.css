@@ -170,28 +170,35 @@ html, body {
 
 
 
+
+
+
 .section {
-    position: absolute;
-    top: 0;
-    left: 0;
+    /* Avoid absolute/height-based stacking that can clip movie cards during scroll. */
+    position: static;
     width: 100%;
-    height: 100%;
     opacity: 0;
     visibility: hidden;
-    transform: translateY(20px);
+    transform: none;
     transition: all 0.4s ease-in-out;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     text-align: center;
+    min-height: 0;
+    padding: 0;
+    margin: 0;
 }
+
+
 
 .section.active {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
 }
+
 
 .section h2 {
     font-size: 3rem;
@@ -225,11 +232,13 @@ html, body {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
     gap: 18px;
-    padding: 10px 0;
+    padding: 10px 0 110px; /* safe bottom space so cards aren't hidden behind fixed bottom nav */
     justify-items: center;
     overflow: visible;
     align-content: start;
+    min-height: 0;
 }
+
 
 
 .movie-card {
